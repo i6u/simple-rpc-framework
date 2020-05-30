@@ -61,7 +61,7 @@ public class DynamicStubFactory implements StubFactory{
             Class<?> clazz = compiler.loadClass(stubFullName, results);
 
             // 把Transport赋值给桩
-            ServiceStub stubInstance = (ServiceStub) clazz.newInstance();
+            ServiceStub stubInstance = (ServiceStub) clazz.getDeclaredConstructor().newInstance();
             stubInstance.setTransport(transport);
             // 返回这个桩
             return (T) stubInstance;
